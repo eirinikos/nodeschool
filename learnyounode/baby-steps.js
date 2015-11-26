@@ -1,7 +1,9 @@
-console.log(process.argv[])
+// sum the supplied command-line arguments
 
-for () {
-  
-}
+var array = process.argv;
+var total = 0;
 
-Number(process.argv[2]);
+for (var i = 2; i < array.length; i++) {
+  total += Number(array[i]);
+};
+console.log(total);
