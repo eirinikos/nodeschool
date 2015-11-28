@@ -5,20 +5,18 @@
 // extension to filter by is process.argv[3]
 
 // readdir reads the contents of directory
-// 'files' is array of filename strings
+// 'list' is array of filename strings
 // path.extname(p) returns file extension
 
 var fs = require('fs');
 var path = require('path');
 
-var directory = process.argv[2];
+var p = process.argv[2];
 var extension = process.argv[3];
 
-fs.readdir(directory, function callback (err, files) {
-  for (var i = 0; i < files.length; i++) {
-    var filtered = files.filter(function matchExtension () {
-      return path.extname(files[i]) === '.' + process.argv[3]
-    })
-  }
-  console.log(filtered.join('\n'));
-})
+fs.readdir(p, function callback (error, list) {
+  list.forEach(function (file) {
+    if (path.extname(file) === '.' + extension)
+      console.log(file);
+  });
+});
